@@ -56,7 +56,7 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
         )}
       </div>
 
-      {error && <div className="textCenter">{error}</div>}
+      {error && <div className="textCenter margin5">{error}</div>}
 
       {loading && <div className="textCenter">Loading...</div>}
 

@@ -13,7 +13,7 @@ import Favorites from "./components/Favorites";
 import SignUp from "./components/SignUp";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState("Keith");
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
   const [favList, setFavList] = useState([]);
