@@ -4,8 +4,8 @@ import CardDisplay from "./CardDisplay";
 function Favorites({ favList, setFavList }) {
   return (
     <>
-      <h1>Favorites</h1>
-      <div>
+      <h1 className="textCenter">Favorites</h1>
+      <div className="flex rowWrap displayContainer marginCenter">
           {favList.map((fav) => {
             return (
               <CardDisplay

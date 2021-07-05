@@ -1,39 +1,61 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-function Login({setLoggedInUser, users}){
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [isValid, setIsValid] = useState(true);
+function Login({ setLoggedInUser, users }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
-    return <>
-        <div>
-            <label htmlFor="username">Username: </label>
-            <input id="username" value={username} onChange={(e)=>{setUsername(e.target.value)}} /> 
+  return (
+    <>
+      <div className="loginContainer border marginCenter flexCol">
+        <div className="full flex logInput">
+          <label className="half textCenter textWhite" htmlFor="username">Username: </label>
+          <input
+          className="half"
+            id="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
         </div>
-        <div>
-            <label htmlFor="password">Password: </label>
-            <input type="password" id="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+        <div className="full flex logInput">
+          <label className="half textCenter textWhite" htmlFor="password">Password: </label>
+          <input
+          className="half"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </div>
-        <button type="button" onClick={()=>{
+        <button
+            className="logButton marginCenter"
+          type="button"
+          onClick={() => {
             let allegedUser = null;
-            let userExists = users.filter((user) => {
+            let userExists =
+              users.filter((user) => {
                 allegedUser = user;
-                return user.username === username.toLowerCase()}).length === 1;
+                return user.username === username.toLowerCase();
+              }).length === 1;
             console.log(allegedUser);
-            if (userExists && allegedUser.password === password)
-            {
-                setIsValid(true);
-                setLoggedInUser(username);
+            if (userExists && allegedUser.password === password) {
+              setIsValid(true);
+              setLoggedInUser(username);
+            } else {
+              setIsValid(false);
             }
-            else
-            {
-                setIsValid(false);
-            }
-        }}>Log In</button>
-        {!isValid && 
-            <div>Username or Password is incorrect</div>
-        }
+          }}
+        >
+          Log In
+        </button>
+        {!isValid && <div className="textCenter textWhite">Username or Password is incorrect</div>}
+      </div>
     </>
+  );
 }
 
 export default Login;

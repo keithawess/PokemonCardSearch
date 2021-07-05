@@ -4,7 +4,7 @@ function CardDisplay({cardUrl, cardName, cardId, isFav, setFavList}) {
 
   return (
     
-    <div className="half marginCenter">
+    <div className="half marginCenter cardContainer">
         <div>
           <h2>{cardName}</h2>
         </div>
@@ -17,7 +17,7 @@ function CardDisplay({cardUrl, cardName, cardId, isFav, setFavList}) {
               
             }
           }
-           className="float">Delete Favorite</button>
+           className="float favButton"></button>
 
         )}
         {!isFav && (
@@ -26,7 +26,7 @@ function CardDisplay({cardUrl, cardName, cardId, isFav, setFavList}) {
               setFavList(current=> [...current, {name: cardName, id: cardId, url: cardUrl}]);
             }
           }
-           className="float">Add Favorite</button>
+           className="float favButton">A</button>
 
         )}
         <img src={cardUrl} alt={`${cardName} card`}/>

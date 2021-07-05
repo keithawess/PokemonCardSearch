@@ -13,31 +13,43 @@ import Favorites from "./components/Favorites";
 import SignUp from "./components/SignUp";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState("Keith");
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
   const [favList, setFavList] = useState([]);
   const [favIds, setFavIds] = useState([]);
 
   useEffect(() => {
-      let temp = [];
-      favList.map((fav) => {
-        temp.push(fav.id);
-      });
-      setFavIds(temp);
+    let temp = [];
+    favList.map((fav) => {
+      temp.push(fav.id);
+    });
+    setFavIds(temp);
   }, [favList]);
 
   return (
     <div className="App">
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+      </style>
       {!loggedInUser && (
         <>
           <header>
             <Router>
               <nav>
-                <NavLink activeClassName="active" className="navOption" to="/login">
+                <NavLink
+                  activeClassName="active"
+                  className="navOption border"
+                  to="/login"
+                >
                   Log In
                 </NavLink>
-                <NavLink activeClassName="active" className="navOption" to="/signup">
+                <NavLink
+                  activeClassName="active"
+                  className="navOption border"
+                  to="/signup"
+                >
                   Sign Up
                 </NavLink>
               </nav>
@@ -64,11 +76,27 @@ function App() {
       {loggedInUser && (
         <Router>
           <nav>
-            <NavLink activeClassName="active" className="navOption" exact to="/">
+            <NavLink
+              activeClassName="active"
+              className="navOption border"
+              exact
+              to="/"
+            >
               Search
             </NavLink>
-            <NavLink activeClassName="active" className="navOption" to="/favorites">
+            <NavLink
+              activeClassName="active"
+              className="navOption border"
+              to="/favorites"
+            >
               Favorites
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              className="navOption border"
+              to="/login"
+              onClick={()=> setLoggedInUser(null)}>
+              Logout
             </NavLink>
           </nav>
           <Switch>
@@ -83,10 +111,7 @@ function App() {
               />
             </Route>
             <Route path="/favorites">
-              <Favorites 
-              favList={favList}
-              setFavList={setFavList}
-              />
+              <Favorites favList={favList} setFavList={setFavList} />
             </Route>
             <Route path="*">
               <Redirect to="/" />

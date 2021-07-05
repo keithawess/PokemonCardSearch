@@ -18,7 +18,7 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
   return (
     <>
       <h1 className="textCenter">Search</h1>
-      <div className="marginCenter">
+      <div className="flex marginCenter justifyCenter wrap">
         <input
           placeholder="Search"
           value={searchBar}
@@ -60,8 +60,8 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
 
       {loading && <div className="textCenter">Loading...</div>}
 
-      {cards && (
-        <div className="flex rowWrap searchContainer marginCenter">
+      {search && (
+        <div className="flex rowWrap displayContainer marginCenter">
           {search.map((card) => {
             return (
               <CardDisplay
