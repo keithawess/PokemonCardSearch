@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import {BrowserRouter as Router, Route, Navlink} from "react-router-dom"
-
 
 function Login({setLoggedInUser, users}){
     const [username, setUsername] = useState("");

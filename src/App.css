@@ -1,0 +1,23 @@
+.flex{
+  display: flex;
+}
+
+.half{
+  flex-basis: calc(100% / 2 - 15px);
+}
+
+.margin5{
+  margin: 5px;
+}
+
+.marginCenter{
+  margin: 5px auto 5px auto;
+}
+
+.searchContainer{
+  flex-direction: column;
+}
+
+.textCenter{
+  text-align: center;
+}
