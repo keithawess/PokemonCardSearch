@@ -21,3 +21,29 @@
 .textCenter{
   text-align: center;
 }
+
+.float{
+  position: absolute;
+  z-index: 1;
+}
+
+nav{
+  line-height: 43px;
+  font-size: x-large;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  border: black solid 4px;
+  height: 50px;
+}
+
+.navOption{
+  text-align: center;
+  flex-basis: calc(100% / 2 - 5px);
+  border: black solid 2px
+}
+
+.active{
+  background-color: red;
+  color:white;
+}

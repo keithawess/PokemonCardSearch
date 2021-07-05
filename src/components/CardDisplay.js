@@ -1,12 +1,35 @@
 import React from "react";
 
-function CardDisplay({cardUrl, cardName}) {
+function CardDisplay({cardUrl, cardName, cardId, isFav, setFavList}) {
 
   return (
     
     <div className="half marginCenter">
-        <h1>{cardName}<button>Add Favorite</button></h1>
-        <img src={cardUrl}/>
+        <div>
+          <h2>{cardName}</h2>
+        </div>
+        {isFav && (
+          <button onClick={()=>
+            {
+              setFavList(current=> current.filter((fav)=>{
+                return cardId !== fav.id;
+              }))
+              
+            }
+          }
+           className="float">Delete Favorite</button>
+
+        )}
+        {!isFav && (
+          <button onClick={()=>
+            {
+              setFavList(current=> [...current, {name: cardName, id: cardId, url: cardUrl}]);
+            }
+          }
+           className="float">Add Favorite</button>
+
+        )}
+        <img src={cardUrl} alt={`${cardName} card`}/>
     </div>
 
   );

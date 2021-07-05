@@ -6,7 +6,7 @@ import {
   Switch,
   NavLink,
 } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import Search from "./components/Search";
 import Favorites from "./components/Favorites";
@@ -16,6 +16,16 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState("Keith");
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
+  const [favList, setFavList] = useState([]);
+  const [favIds, setFavIds] = useState([]);
+
+  useEffect(() => {
+      let temp = [];
+      favList.map((fav) => {
+        temp.push(fav.id);
+      });
+      setFavIds(temp);
+  }, [favList]);
 
   return (
     <div className="App">
@@ -24,21 +34,28 @@ function App() {
           <header>
             <Router>
               <nav>
-                <NavLink activeClassName="active" to="/login">Log In</NavLink>
-                <NavLink activeClassName="active" to="/signup">Sign Up</NavLink>
+                <NavLink activeClassName="active" className="navOption" to="/login">
+                  Log In
+                </NavLink>
+                <NavLink activeClassName="active" className="navOption" to="/signup">
+                  Sign Up
+                </NavLink>
               </nav>
               <Switch>
                 <Route path="/login">
-                  <Login setLoggedInUser={setLoggedInUser} users={users} setUsers={setUsers} />
+                  <Login
+                    setLoggedInUser={setLoggedInUser}
+                    users={users}
+                    setUsers={setUsers}
+                  />
                 </Route>
                 <Route path="/signup">
-                  <SignUp setUsers={setUsers} users={users}/>
+                  <SignUp setUsers={setUsers} users={users} />
                 </Route>
                 <Route path="*">
-                  <Redirect to="/login"/>
+                  <Redirect to="/login" />
                 </Route>
               </Switch>
-
             </Router>
           </header>
         </>
@@ -47,19 +64,29 @@ function App() {
       {loggedInUser && (
         <Router>
           <nav>
-            <NavLink activeClassName="active" exact to="/">
+            <NavLink activeClassName="active" className="navOption" exact to="/">
               Search
             </NavLink>
-            <NavLink activeClassName="active" to="/favorites">
+            <NavLink activeClassName="active" className="navOption" to="/favorites">
               Favorites
             </NavLink>
           </nav>
           <Switch>
             <Route exact path="/">
-              <Search search={search} setSearch={setSearch}/>
+              <Search
+                search={search}
+                setSearch={setSearch}
+                favList={favList}
+                setFavList={setFavList}
+                favIds={favIds}
+                setFavIds={setFavIds}
+              />
             </Route>
             <Route path="/favorites">
-              <Favorites />
+              <Favorites 
+              favList={favList}
+              setFavList={setFavList}
+              />
             </Route>
             <Route path="*">
               <Redirect to="/" />
