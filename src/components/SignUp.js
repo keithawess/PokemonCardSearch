@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router";
 
 function SignUp({ users, setUsers }) {
@@ -11,7 +11,7 @@ function SignUp({ users, setUsers }) {
   const history = useHistory();
 
   //Checks if email has minimum required parts. Does not fully check if email is valid.
-  function checkEmail() {
+  const checkEmail = useCallback(() => {
     if (
       emailAdd.includes("@") &&
       emailAdd.includes(".") &&
@@ -21,13 +21,13 @@ function SignUp({ users, setUsers }) {
     } else {
       return false;
     }
-  }
+  }, [emailAdd]);
 
   useEffect(() => {
     if (emailAdd.length > 0) {
       setIsValid(checkEmail());
     }
-  }, [emailAdd]);
+  }, [emailAdd, checkEmail]);
 
   return (
     <>
@@ -44,8 +44,6 @@ function SignUp({ users, setUsers }) {
               setUsername(e.target.value);
             }}
           />
-          {users.filter((user) => user.username === username.toLowerCase())
-            .length > 0 && <span>Username already exists. </span>}
         </div>
         <div className="full flex logInput">
           <label className="half textCenter textWhite" htmlFor="password">
@@ -60,14 +58,13 @@ function SignUp({ users, setUsers }) {
               setPassword(e.target.value);
             }}
           />
-          {password.length > 0 && password.length < 6 && (
-            <span>Please enter at least 6 characters.</span>
-          )}
         </div>
         <div className="full flex logInput">
-          <label className="textWhite textCenter half" htmlFor="repassword">Enter Password Again: </label>
+          <label className="textWhite textCenter half" htmlFor="repassword">
+            Enter Password Again:{" "}
+          </label>
           <input
-          className="half"
+            className="half"
             type="password"
             id="repassword"
             value={rePassword}
@@ -75,21 +72,19 @@ function SignUp({ users, setUsers }) {
               setRePassword(e.target.value);
             }}
           />
-          {rePassword.length > 0 && password !== rePassword && (
-            <span>Passwords do not match.</span>
-          )}
         </div>
         <div className="full flex logInput">
-          <label className="half textCenter textWhite" htmlFor="email">Email Address: </label>
+          <label className="half textCenter textWhite" htmlFor="email">
+            Email Address:{" "}
+          </label>
           <input
-          className="half"
+            className="half"
             id="email"
             value={emailAdd}
             onChange={(e) => {
               setEmailAdd(e.target.value);
             }}
           />
-          {!isValid && <span>Not a valid email.</span>}
         </div>
         <button
           className="logButton"
@@ -120,7 +115,20 @@ function SignUp({ users, setUsers }) {
         >
           Submit
         </button>
-        {message && <div>{message}</div>}
+        {users.filter((user) => user.username === username.toLowerCase())
+          .length > 0 && <div>Username already exists. </div>}
+        {password.length > 0 && password.length < 6 && (
+          <div className="textCenter textWhite">
+            Password must be at least 6 characters.
+          </div>
+        )}
+        {rePassword.length > 0 && password !== rePassword && (
+          <div className="textCenter textWhite">Passwords do not match.</div>
+        )}
+        {!isValid && emailAdd.length > 0 && (
+          <div className="textCenter textWhite">Not a valid email.</div>
+        )}
+        {message && <div className="textCenter textWhite">{message}</div>}
       </div>
     </>
   );

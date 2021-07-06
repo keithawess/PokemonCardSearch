@@ -6,18 +6,18 @@ function Favorites({ favList, setFavList }) {
     <>
       <h1 className="textCenter">Favorites</h1>
       <div className="flex rowWrap displayContainer marginCenter">
-          {favList.map((fav) => {
-            return (
-              <CardDisplay
-                key={fav.id}
-                isFav={true}
-                cardUrl={fav.url}
-                cardName={fav.name}
-                cardId={fav.id}
-                setFavList={setFavList}
-              />
-            );
-          })}
+        {favList.map((fav) => {
+          return (
+            <CardDisplay
+              key={fav.id}
+              isFav={true}
+              cardUrl={fav.url}
+              cardName={fav.name}
+              cardId={fav.id}
+              setFavList={setFavList}
+            />
+          );
+        })}
       </div>
     </>
   );

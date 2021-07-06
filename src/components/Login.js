@@ -9,9 +9,11 @@ function Login({ setLoggedInUser, users }) {
     <>
       <div className="loginContainer border marginCenter flexCol">
         <div className="full flex logInput">
-          <label className="half textCenter textWhite" htmlFor="username">Username: </label>
+          <label className="half textCenter textWhite" htmlFor="username">
+            Username:{" "}
+          </label>
           <input
-          className="half"
+            className="half"
             id="username"
             value={username}
             onChange={(e) => {
@@ -20,9 +22,11 @@ function Login({ setLoggedInUser, users }) {
           />
         </div>
         <div className="full flex logInput">
-          <label className="half textCenter textWhite" htmlFor="password">Password: </label>
+          <label className="half textCenter textWhite" htmlFor="password">
+            Password:{" "}
+          </label>
           <input
-          className="half"
+            className="half"
             type="password"
             id="password"
             value={password}
@@ -32,7 +36,7 @@ function Login({ setLoggedInUser, users }) {
           />
         </div>
         <button
-            className="logButton marginCenter"
+          className="logButton marginCenter"
           type="button"
           onClick={() => {
             let allegedUser = null;
@@ -52,7 +56,11 @@ function Login({ setLoggedInUser, users }) {
         >
           Log In
         </button>
-        {!isValid && <div className="textCenter textWhite">Username or Password is incorrect</div>}
+        {!isValid && (
+          <div className="textCenter textWhite">
+            Username or Password is incorrect
+          </div>
+        )}
       </div>
     </>
   );

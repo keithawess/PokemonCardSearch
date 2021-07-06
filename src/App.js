@@ -13,7 +13,7 @@ import Favorites from "./components/Favorites";
 import SignUp from "./components/SignUp";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState("Keith");
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
   const [favList, setFavList] = useState([]);
@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     let temp = [];
     favList.map((fav) => {
-      temp.push(fav.id);
+      return temp.push(fav.id);
     });
     setFavIds(temp);
   }, [favList]);
@@ -78,7 +78,7 @@ function App() {
           <nav>
             <NavLink
               activeClassName="active"
-              className="navOption border"
+              className="third textCenter border"
               exact
               to="/"
             >
@@ -86,16 +86,17 @@ function App() {
             </NavLink>
             <NavLink
               activeClassName="active"
-              className="navOption border"
+              className="third textCenter border"
               to="/favorites"
             >
               Favorites
             </NavLink>
             <NavLink
               activeClassName="active"
-              className="navOption border"
+              className=" third textCenter border"
               to="/login"
-              onClick={()=> setLoggedInUser(null)}>
+              onClick={() => setLoggedInUser(null)}
+            >
               Logout
             </NavLink>
           </nav>

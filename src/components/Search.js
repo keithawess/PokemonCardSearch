@@ -6,14 +6,14 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
   const [searchBar, setSearchBar] = useState("");
   const [query, setQuery] = useState("");
   const [showOptions, setShowOptions] = useState(false);
-  const [color, setColor] = useState("");
+  const [type, setType] = useState("");
   const { data: cards, error, loading } = useFetch(query);
 
   useEffect(() => {
     if (cards) {
       setSearch(cards.data);
     }
-  }, [cards]);
+  }, [cards, setSearch]);
 
   return (
     <>
@@ -22,17 +22,19 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
         <input
           placeholder="Search"
           value={searchBar}
-          onChange={(e) => setSearchBar(e.target.value)}
+          onChange={(e) =>
+            !showOptions ? setSearchBar(e.target.value) : setSearchBar("")
+          }
         ></input>
         <button
           onClick={() => {
-            if (searchBar.length > 0) {
-              if (color !== "" && showOptions) {
-                setQuery(`${searchBar}&colors=${color}`);
+            if (true) {
+              if (type !== "" && showOptions) {
+                setQuery(`q=types:${type}`);
               } else {
                 if (query !== searchBar) {
                   setSearch([]);
-                  setQuery(searchBar);
+                  setQuery(`q=name:${searchBar}*`);
                 }
               }
             }
@@ -40,18 +42,34 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
         >
           Search
         </button>{" "}
-        <button onClick={() => setShowOptions(!showOptions)}>
+        <button
+          onClick={() => {
+            setShowOptions(!showOptions);
+            setSearchBar("");
+          }}
+        >
           Advanced Search Options
         </button>
         {showOptions && (
           <div>
-            <label htmlFor="color">Color: </label>
-            <input
-              type="color"
-              id="color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
+            <label htmlFor="type">Type: </label>
+            <select
+              onChange={(e) => {
+                setType(e.target.value);
+              }}
+            >
+              <option>Colorless</option>
+              <option>Fire</option>
+              <option>Water</option>
+              <option>Lightning</option>
+              <option>Fighting</option>
+              <option>Psychic</option>
+              <option>Colorless</option>
+              <option>Darkness</option>
+              <option>Metal</option>
+              <option>Dragon</option>
+              <option>Fairy</option>
+            </select>
           </div>
         )}
       </div>
@@ -61,7 +79,7 @@ function Search({ setSearch, search, favIds, setFavIds, favList, setFavList }) {
       {loading && <div className="textCenter">Loading...</div>}
 
       {search && (
-        <div className="flex rowWrap displayContainer marginCenter">
+        <div className="flex rowWrap displayContainer marginCenter justifyCenter">
           {search.map((card) => {
             return (
               <CardDisplay

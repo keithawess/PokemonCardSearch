@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-const baseUrl =
-  "https://api.pokemontcg.io/v2/cards?q=name:";
+const baseUrl = "https://api.pokemontcg.io/v2/cards?";
 
 export default function useFetch(url) {
   const [data, setData] = useState(null);
@@ -11,14 +10,10 @@ export default function useFetch(url) {
   useEffect(() => {
     setError(null);
     setData(null);
-    if (url.length < 2) {
-      setError("Search must be at least 2 characters long!");
-      return;
-    }
     async function callAPI() {
       setLoading(true);
       try {
-        const response = await fetch(baseUrl + url + "*");
+        const response = await fetch(baseUrl + url);
         if (response.ok) {
           const json = await response.json();
 

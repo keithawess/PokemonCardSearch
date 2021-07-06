@@ -1,102 +1,104 @@
-.App{
-  font-family: 'Press Start 2P', sans-serif;
+.App {
+  font-family: "Press Start 2P", sans-serif;
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
-.justifyCenter{
+.justifyCenter {
   justify-content: center;
 }
 
-.spaceBetween{
+.spaceBetween {
   justify-content: space-between;
 }
 
-.wrap{
+.wrap {
   flex-wrap: wrap;
 }
 
-.full{
+.full {
   flex-basis: calc(100% - 10px);
 }
 
-.flexGrow{
+.flexGrow {
   flex-grow: 1;
 }
 
-.flexCol{
+.flexCol {
   flex-direction: column;
 }
 
-.half{
+.half {
   flex-basis: calc(100% / 2 - 15px);
 }
 
-.margin5{
+.third {
+  flex-basis: calc(100% / 3 - 15px);
+}
+
+.margin5 {
   margin: 5px;
 }
 
-.marginCenter{
+.marginCenter {
   margin-left: auto;
   margin-right: auto;
 }
 
-.displayContainer{
+.displayContainer {
   width: 90%;
   flex-flow: row wrap;
 }
 
-.textCenter{
+.textCenter {
   text-align: center;
 }
 
-.float{
+.float {
   position: absolute;
   z-index: 1;
 }
 
-.bgWhite{
+.bgWhite {
   background-color: white;
 }
 
-.textWhite{
+.textWhite {
   color: white;
 }
 
-nav{
+nav {
   line-height: 43px;
   font-size: x-large;
   width: 100%;
   display: flex;
-  text-decoration: none;
-  border: black solid 4px;
   height: 50px;
 }
 
-.navOption{
+.navOption {
   text-align: center;
   flex-basis: calc(100% / 2 - 5px);
 }
 
-.active{
+.active {
   background-color: red;
-  color:white;
+  color: white;
 }
 
-.border{
-  border:black 4px solid
+.border {
+  border: black 4px solid;
 }
 
-.loginContainer{
+.loginContainer {
   width: 80%;
   margin-top: 100px;
   background-color: red;
   border-radius: 20px;
 }
 
-.logButton{
+.logButton {
   background-color: white;
   width: 100%;
   border-top: black solid 4px;
@@ -104,32 +106,28 @@ nav{
   height: 40px;
   display: block;
   font-size: larger;
-  font-family: 'Press Start 2P', sans-serif;
+  font-family: "Press Start 2P", sans-serif;
 }
 
-.favButton
-{
+.favButton {
   border-radius: 50%;
   height: 32px;
 }
 
-@media (min-width: 1000px)
-{
-  .cardContainer{
+@media (min-width: 1000px) {
+  .cardContainer {
     flex-basis: calc(100% / 3 - 10px);
   }
 }
 
-@media (min-width: 1150px)
-{
-  .cardContainer{
+@media (min-width: 1150px) {
+  .cardContainer {
     flex-basis: calc(100% / 4 - 10px);
   }
 }
 
-@media (max-width: 400px)
-{
-  .logInput{
+@media (max-width: 400px) {
+  .logInput {
     flex-direction: column;
   }
 }
